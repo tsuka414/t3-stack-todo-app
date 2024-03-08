@@ -35,7 +35,7 @@ function Home() {
               </div>
               <div>
                 <CreateTodo />
-                <Todos />
+                {/* <Todos /> */}
               </div>
             </>
           )}
