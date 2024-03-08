@@ -54,14 +54,6 @@ function Home() {
                   - The ultimate productivity tool -
                 </p>
               </div>
-              {/* <div className=""> */}
-                {/* <Image
-                  src="/images/github-icon.png"
-                  width={600}
-                  height={600}
-                  alt="main-img"
-                /> */}
-              {/* </div> */}
             </div>
           )}
         </main>
