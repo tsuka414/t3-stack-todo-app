@@ -46,9 +46,9 @@ export function CreateTodo() {
           toast.error(result.error.format()._errors.join("\n"));
           return;
         }
-              mutate(newTodo);
-      }}
 
+        mutate(newTodo);
+      }}
       className="flex justify-between gap-3"
     >
       <input

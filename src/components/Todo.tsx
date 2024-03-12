@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import type { Todo } from "~/server/types";
 import { api } from "~/utils/api";
 
@@ -13,8 +14,8 @@ export function Todo({ todo }: TodoProps) {
 
   const trpc = api.useContext();
 
-    const { mutate: toggleMutation } = api.todo.toggle.useMutation({
-          onMutate: async ({ id, is_completed }) => {
+  const { mutate: toggleMutation } = api.todo.toggle.useMutation({
+    onMutate: async ({ id, is_completed }) => {
       await trpc.todo.all.cancel();
       const previousTodos = trpc.todo.all.getData();
       trpc.todo.all.setData(undefined, (prev) => {
@@ -51,8 +52,8 @@ export function Todo({ todo }: TodoProps) {
     },
   });
 
-    const { mutate: deleteMutation } = api.todo.delete.useMutation({
-          onMutate: async (deleteId) => {
+  const { mutate: deleteMutation } = api.todo.delete.useMutation({
+    onMutate: async (deleteId) => {
       await trpc.todo.all.cancel();
       const previousTodos = trpc.todo.all.getData();
       trpc.todo.all.setData(undefined, (prev) => {
@@ -72,8 +73,8 @@ export function Todo({ todo }: TodoProps) {
     },
   });
 
-    const { mutate: updateMutation } = api.todo.update.useMutation({
-          onMutate: async ({ id, text: currentTodo }) => {
+  const { mutate: updateMutation } = api.todo.update.useMutation({
+    onMutate: async ({ id, text: currentTodo }) => {
       await trpc.todo.all.cancel();
       const previousTodos = trpc.todo.all.getData();
       trpc.todo.all.setData(undefined, (prev) => {
@@ -120,8 +121,8 @@ export function Todo({ todo }: TodoProps) {
           className="ml-5 flex-1 text-ellipsis rounded-none border-x-0 border-t-0 border-b border-dashed border-b-gray-two bg-cream-four px-0 pb-1 text-base font-normal text-gray-three placeholder:text-gray-two focus:border-gray-three focus:outline-none focus:ring-0"
           id={`${todo.id}-text`}
           type="text"
-                  placeholder="Enter a todo"
-                            value={currentTodo}
+          placeholder="Enter a todo"
+          value={currentTodo}
           onChange={(e) => {
             setCurrentTodo(e.target.value);
           }}

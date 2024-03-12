@@ -6,7 +6,7 @@ export const todoRouter = createTRPCRouter({
   all: protectedProcedure.query(async ({ ctx }) => {
     const todos = await ctx.prisma.todo.findMany({
       where: {
-        userId: ctx.session.user.id as string, // 型アサーションを使用
+        userId: ctx.session.user.id,
       },
       orderBy: {
         createdAt: "desc",
@@ -24,7 +24,7 @@ export const todoRouter = createTRPCRouter({
         text: input,
         user: {
           connect: {
-            id: ctx.session.user.id as string, // 型アサーションを使用
+            id: ctx.session.user.id,
           },
         },
       },

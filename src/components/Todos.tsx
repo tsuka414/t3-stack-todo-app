@@ -31,7 +31,7 @@ export function Todos() {
           </section>
         );
       })}
-        <ProgressBar todos={todos} />
+      <ProgressBar todos={todos} />
     </>
   );
 }
